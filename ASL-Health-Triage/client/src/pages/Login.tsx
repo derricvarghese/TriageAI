@@ -3,6 +3,7 @@ import { useLocation } from "wouter";
 import { useEffect, useState } from "react";
 import { Activity, Loader2 } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
+import { NightScene } from "@/components/NightScene";
 
 export default function Login() {
   const { user, loading, signInWithGoogle } = useAuth();
@@ -39,19 +40,25 @@ export default function Login() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="w-6 h-6 animate-spin text-primary" />
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ background: "#0a0010" }}>
+        <NightScene showOwl={false} showMoon={false} starCount={80} />
+        <Loader2 className="w-6 h-6 animate-spin text-primary relative z-10" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4" data-testid="login-page">
-      <div className="w-full max-w-sm flex flex-col items-center gap-8">
+    <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden" style={{ background: "#0a0010" }} data-testid="login-page">
+      <NightScene showOwl={false} showMoon={true} starCount={120} />
+
+      <div className="w-full max-w-sm flex flex-col items-center gap-8 relative z-10">
         <div className="flex flex-col items-center gap-3">
-          <div className="bg-primary/10 p-3 rounded-lg text-primary">
-            <Activity className="h-8 w-8" />
-          </div>
+          <img
+            src="/owl-logo.png"
+            alt="ASOwl"
+            className="h-24 w-24 object-cover rounded-xl"
+            style={{ filter: "drop-shadow(0 0 20px rgba(200,50,50,0.5))" }}
+          />
           <h1 className="font-serif text-3xl font-light text-foreground" data-testid="text-login-title">
             AS<em className="italic text-primary">Owl</em>
           </h1>
@@ -65,6 +72,7 @@ export default function Login() {
             onClick={handleGoogleSignIn}
             disabled={signingIn}
             className="w-full flex items-center justify-center gap-3 px-6 py-3.5 border border-foreground/30 text-foreground text-[10px] tracking-[2px] uppercase font-sans hover:border-primary hover:text-primary transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ backdropFilter: "blur(4px)", background: "rgba(255,255,255,0.03)" }}
             data-testid="button-google-signin"
           >
             {signingIn ? (

@@ -1,13 +1,16 @@
 import { useTriageSessions } from "@/hooks/use-triage-sessions";
+import type { TriageSession } from "@shared/schema";
 import { Navbar } from "@/components/layout/Navbar";
 import { format } from "date-fns";
 import { Activity, Clock, AlertTriangle, ChevronRight, UserPlus, Loader2 } from "lucide-react";
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { NightScene } from "@/components/NightScene";
 
 export default function Dashboard() {
-  const { data: sessions, isLoading, error } = useTriageSessions();
+  const { data: sessionsData, isLoading, error } = useTriageSessions();
+  const sessions = sessionsData as TriageSession[] | undefined;
 
   const getUrgencyColor = (level: string) => {
     switch (level) {
@@ -20,10 +23,11 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen relative overflow-hidden text-foreground" style={{ background: "#0a0010" }}>
       <Navbar />
+      <NightScene showOwl={false} starCount={150} />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
             <h1 className="font-serif text-4xl font-light text-foreground" data-testid="text-title">
