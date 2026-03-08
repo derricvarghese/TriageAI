@@ -510,7 +510,7 @@ export default function NewSession() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="w-full lg:w-[380px] shrink-0 overflow-hidden"
+                className="w-full lg:w-[460px] shrink-0 overflow-hidden"
               >
                 <VisionScanner onSignalsDetected={handleSignalsDetected} />
               </motion.div>
