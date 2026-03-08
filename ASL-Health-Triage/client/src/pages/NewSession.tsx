@@ -507,10 +507,10 @@ export default function NewSession() {
           <AnimatePresence>
             {showCamera && (step === "chat" || step === "done") && (
               <motion.div
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "auto" }}
-                exit={{ opacity: 0, width: 0 }}
-                className="lg:w-[340px] shrink-0 overflow-hidden"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="w-full lg:w-[380px] shrink-0 overflow-hidden"
               >
                 <VisionScanner onSignalsDetected={handleSignalsDetected} />
               </motion.div>
